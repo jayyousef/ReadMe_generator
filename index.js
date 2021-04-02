@@ -65,12 +65,27 @@ const questions = [
         name: 'contribute',
         message: 'How can other developers contribute to your project?',
     },
+    {
+        type: 'input',
+        name: 'testing',
+        message: 'What tests have you created for your app? Or how can other users create tests for your app?',
+    },
+    {
+        type: 'input',
+        name: 'github',
+        message: 'Type your github user profile (This is case-sensitive).',
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: 'Type your email so users can contact you',
+    },
 ]
 
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {fs.writeFile(fileName, generateMarkdown(data), (err) =>
-        err ? console.log(err) : console.log('Success!')
+function writeToFile(fileName, data) {fs.writeFile(fileName, generateMarkdown(data), (err) => {
+        err ? console.log(err) : console.log('Success!') }
     );
  }
 //  function askAboutTableOfContent(){
