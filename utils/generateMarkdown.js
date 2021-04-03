@@ -1,37 +1,57 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
-  switch (license) {
-    case 'none':
-      return ``;
-
-    case 'Apache 2.0 License':
-      return '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)'
-
-    case 'Boost Software License 1.0':
-      return '[![License](https://img.shields.io/badge/License-Boost%201.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)'
-
-    case 'The MIT License':
-      return '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)'
+  var badge;
+  if (license == 'none') {
+    badge = ``
   }
+  else if (license == 'Apache 2.0 License') {
+    badge = '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)'
+  }
+  else if (license = 'Boost Software License 1.0') {
+    badge = '[![License](https://img.shields.io/badge/License-Boost%201.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)'
+  } else if (license = 'The MIT License') {
+    badge = '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)'
+  }
+
+return badge;
+
+}
+
+function renderLicenseLink(license) { 
+  var link;
+  if (license == 'none') {
+    link = ``
+  }
+  else if (license == 'Apache 2.0 License') {
+    link = '[[License](https://opensource.org/licenses/Apache-2.0)'
+  }
+  else if (license = 'Boost Software License 1.0') {
+    link = '[[License](https://www.boost.org/LICENSE_1_0.txt)'
+  } else if (license = 'The MIT License') {
+    link = '[[License: MIT](https://opensource.org/licenses/MIT)'
+  }
+  
+return link;
 }
 
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
+  var licenseSection
   if (license == 'none') {
-    return ``;
+    licenseSection = ``;
   } else {
-    return `## License 
-    This project is licensed under the ${license}. Click the link below to learn more about how you can use this project.`
+    licenseSection = `## License 
+    This project is licensed under the `+license+". Click the link below to learn more about how you can use this project."
   }
+  return licenseSection
 }
-// ${renderLicenseLink(data.license)}
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  return `# ${data.projectTitle}
+  return `# ${data.projectTitle.toUpperCase()}
 
   ${renderLicenseBadge(data.license)}
 
@@ -61,6 +81,7 @@ function generateMarkdown(data) {
 	${data.credits}
 
   ${renderLicenseSection(data.license)}
+  ${renderLicenseLink(data.license)}
 
   ## Features 
 ${data.features}
@@ -82,23 +103,6 @@ ${data.license}
 
 }
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-// function renderLicenseLink(license) { 
-//   switch (license) {
-//     case 'none':
-//       return ``;
-
-//     case 'license 1':
-//       return '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)'
-
-//     case 'license 2':
-// return '[![License](https://img.shields.io/badge/License-Boost%201.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)'
-
-//     case 'license 3':
-// return '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)'
-//   }
-// }
 
 
 module.exports = generateMarkdown;
