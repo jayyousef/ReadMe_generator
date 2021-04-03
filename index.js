@@ -5,93 +5,108 @@ const generateMarkdown = require('./utils/generateMarkdown')
 // TODO: Create an array of questions for user input
 const questions = [
     {
-        message: "Enter team member's name",
-        name: "name"
+        type: 'input',
+        name: 'projectTitle',
+        message: 'What is your Project Title?',
     },
     {
-        type: "list",
-        message: "Select team member's role",
-        choices: [
-            "Engineer",
-            "Intern",
-            "Manager"
-        ],
-        name: "role"
+        type: 'input',
+        name: 'description',
+        message: 'Give a one sentence description of your project?',
+    }, 
+    {
+        type: 'input',
+        name: 'motivation',
+        message: 'What was your motivation for creating this project?',
+    }, 
+    {
+        type: 'input',
+        name: 'why',
+        message: 'Why did you build this project?',
+    }, 
+    {
+        type: 'input',
+        name: 'problemSolved',
+        message: 'What problem does this project solve?',
+    }, 
+    {
+        type: 'input',
+        name: 'learned',
+        message: 'What did you learn during the course of this project?',
     },
     {
-        message: "Enter team member's id",
-        name: "id"
+        type: 'input',
+        name: 'installation',
+        message: 'What are the steps required to install your project?',
     },
     {
-        message: "Enter team member's email address",
-        name: "email"
-    }]
+        type: 'input',
+        name: 'usage',
+        message: 'Provide instructions and examples for use.',
+    },
+    {
+        type: 'input',
+        name: 'credits',
+        message: 'List your collaborators, if any, and mention any third-party assets that require attribution, or any tutorials that helped you along the way.',
+    },
+    {
+        type: 'checkbox',
+        name: 'license',
+        message: 'Which license do you want?',
+        choices: ['none', 'Apache 2.0 License', 'Boost Software License 1.0', 'The MIT License'],
+      },
+    {
+        type: 'input',
+        name: 'features',
+        message: 'What special features does this app contain? List them here.',
+    }, 
+    {
+        type: 'input',
+        name: 'contribute',
+        message: 'How can other developers contribute to your project?',
+    },
+    {
+        type: 'input',
+        name: 'testing',
+        message: 'What tests have you created for your app? Or how can other users create tests for your app?',
+    },
+    {
+        type: 'input',
+        name: 'github',
+        message: 'Type your github user profile (This is case-sensitive).',
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: 'Type your email so users can contact you',
+    },
+]
 
-const questions2 = [{
-    message: `Enter team member's ${roleInfo}`,
-    name: "roleInfo"
-},
-{
-    type: "list",
-    message: "Would you like to add more team members?",
-    choices: [
-        "yes",
-        "no"
-    ],
-    name: "moreMembers"
-}]
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {
-    fs.writeFile(fileName, generateMarkdown(data), (err) => {
-        err ? console.log(err) : console.log('Success!')
-    }
+function writeToFile(fileName, data) {fs.writeFile(fileName, generateMarkdown(data), (err) => {
+        err ? console.log(err) : console.log('Success!') }
     );
-}
+ }
 //  function askAboutTableOfContent(){
 //     inquirer.prompt(questions)
 //  }
 
 
 // TODO: Create a function to initialize app
-function init() {
+function init() { 
 
-    function addMember() {
-        inquirer.prompt(questions)
-            .then(function ({ name, role, id, email }) {
-                let roleInfo = "";
-                if (role === "Engineer") {
-                    roleInfo = "GitHub username";
-                } else if (role === "Intern") {
-                    roleInfo = "school name";
-                } else {
-                    roleInfo = "office phone number";
-                }
-                inquirer.prompt(questions2)
-                    .then(function ({ roleInfo, moreMembers }) {
-                        let newMember;
-                        if (role === "Engineer") {
-                            newMember = new Engineer(name, id, email, roleInfo);
-                        } else if (role === "Intern") {
-                            newMember = new Intern(name, id, email, roleInfo);
-                        } else {
-                            newMember = new Manager(name, id, email, roleInfo);
-                        }
-                        employees.push(newMember);
-                        addHtml(newMember)
-                            .then(function () {
-                                if (moreMembers === "yes") {
-                                    addMember();
-                                } else {
-                                    finishHtml();
-                                }
-                            });
+inquirer.prompt(questions).then((data) => {
+    const filename = `${data.projectTitle.toLowerCase().split(' ').join('')}.md`;
 
-                    });
-            });
-    }
+    
+    // if yes table {}
+    // run askAboutTableOfContent()
+    // question 3
+    // all my other stuff
 
-    writeToFile(fileName, data);
+    writeToFile(filename, data);
+});
 }
 
 // Function call to initialize app
