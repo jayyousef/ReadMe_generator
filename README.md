@@ -3,8 +3,8 @@
 
 ## Table of contents
 1. [Introduction](#introduction)
-2. [Some paragraph](#installation)
-3. [Another paragraph](#contributions)
+2. [Installation](#installation)
+3. [Contributions](#contributions)
 4. [Contact](#contact)
 
 ## Description <a name="introduction"></a>
